@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Coordinate</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      div {
+        width: 250px;
+        height: 250px;
+        background-color: blanchedalmond;
+        margin-bottom: 4px;
+        border-radius: 4px;
+      }
+      .special {
+        background-color: lightsalmon;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="special"></div>
+    <div></div>
+    <div></div>
+    <script>
+      const { log } = console
+      const special = document.querySelector('.special')
+
+      special.addEventListener('click', event => {
+        log(special.getBoundingClientRect())
+        log(`client: ${event.clientX} ${event.clientY}`)
+        log(`page: ${event.pageX} ${event.pageY}`)
+      })
+    </script>
+  </body>
+</html>
