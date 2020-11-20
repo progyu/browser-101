@@ -9,10 +9,14 @@
   <body>
     <a href="https://www.naver.com">Go to Naver</a>
     <script>
-      window.addEventListener('load', () => console.log('load'))
+      // only document
       window.addEventListener('DOMContentLoaded', () =>
         console.log('DOMContentLoaded')
       )
+      // after resource (css, images ...)
+      window.addEventListener('load', () => console.log('load'))
+
+      // before unload
       window.addEventListener('beforeunload', event => {
         // 표준에 따라 기본 동작 방지
         event.preventDefault()
@@ -20,6 +24,8 @@
         event.returnValue = ''
         console.log('beforeunload')
       })
+
+      // rosource is being unloaded
       window.addEventListener('unload', () => console.log('unload'))
     </script>
   </body>
