@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Scroll</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      div {
+        width: 250px;
+        height: 250px;
+        background-color: blanchedalmond;
+        margin-bottom: 4px;
+        border-radius: 4px;
+      }
+      aside {
+        position: fixed;
+        top: 0;
+        right: 0;
+      }
+      .special {
+        background-color: lightsalmon;
+      }
+    </style>
+  </head>
+  <body>
+    <aside>
+      <button class="scroll-by">Scroll by 100px(y)</button>
+      <button class="scroll-to">Scroll to 100px(y)</button>
+      <button class="scroll-into">Scroll into special</button>
+    </aside>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="special"></div>
+    <div></div>
+    <div></div>
+    <script>
+      const scrollBy = document.querySelector('.scroll-by')
+      const scrollTo = document.querySelector('.scroll-to')
+      const scrollInto = document.querySelector('.scroll-into')
+      const special = document.querySelector('.special')
+
+      scrollBy.addEventListener('click', () => {
+        window.scrollBy(0, 100)
+      })
+      scrollTo.addEventListener('click', () => {
+        window.scrollTo(0, 100)
+      })
+      scrollInto.addEventListener('click', () => {
+        special.scrollIntoView()
+      })
+    </script>
+  </body>
+</html>
