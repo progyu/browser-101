@@ -63,7 +63,8 @@ button {
 .game__field {
   width: 100%;
   height: 100%;
-  margin-top: 40px;
+  position: relative;
+  margin-top: 100px;
 }
 
 .pop-up {
