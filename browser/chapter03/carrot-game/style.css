@@ -47,6 +47,8 @@ button {
   font-size: 32px;
   margin-top: 8px;
   visibility: hidden;
+  user-select: none;
+  cursor: auto;
 }
 
 .game__score {
@@ -60,6 +62,8 @@ button {
   background-color: darksalmon;
   color: white;
   visibility: hidden;
+  user-select: none;
+  cursor: auto;
 }
 
 .game__field {
@@ -98,4 +102,14 @@ button {
 .pop-up__message {
   display: block;
   font-size: 38px;
+}
+
+.carrot,
+.bug {
+  transition: transform 100ms ease-in;
+}
+
+.carrot:hover,
+.bug:hover {
+  transform: scale(1.1);
 }
