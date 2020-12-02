@@ -11,6 +11,10 @@ const gameBtn = document.querySelector('.game__button')
 const gameTimer = document.querySelector('.game__timer')
 const gameScore = document.querySelector('.game__score')
 
+const popup = document.querySelector('.pop-up')
+const popupText = document.querySelector('.pop-up__message')
+const popupRefresh = document.querySelector('.pop-up__refresh')
+
 let started = false
 let score = 0
 let timer = undefined
@@ -31,12 +35,18 @@ function startGame() {
   startGameTimer()
 }
 
-function stopGame() {}
+function stopGame() {
+  stopGameTimer()
+}
 
 function showStopButton() {
   const icon = gameBtn.querySelector('.fa-play')
   icon.classList.add('fa-stop')
   icon.classList.remove('fa-play')
+}
+
+function hideGameButton() {
+  gameBtn.style.visibility = 'hidden'
 }
 
 function showTimerAndScore() {
@@ -56,11 +66,21 @@ function startGameTimer() {
   }, 1000)
 }
 
+function stopGameTimer() {
+  clearInterval(timer)
+  hideGameButton()
+  showPopUpWithText('REPLAY❓')
+}
+
 function updateTimerText(time) {
   const minutes = Math.floor(time / 60)
   const seconds = time % 60
-  console.log(seconds)
   gameTimer.textContent = `${minutes}:${seconds}`
+}
+
+function showPopUpWithText(text) {
+  popupText.textContent = text
+  popup.classList.remove('pop-up--hide')
 }
 
 function initGame() {
