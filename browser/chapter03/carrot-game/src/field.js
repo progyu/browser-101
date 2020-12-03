@@ -10,7 +10,7 @@ export default class Field {
     this.bugCount = bugCount
     this.field = document.querySelector('.game__field')
     this.fieldRect = this.field.getBoundingClientRect()
-    this.field.addEventListener('click', event => this.onClick(event))
+    this.field.addEventListener('click', this.onClick)
   }
 
   init() {
@@ -41,7 +41,7 @@ export default class Field {
     }
   }
 
-  onClick(event) {
+  onClick = event => {
     const { target } = event
 
     if (target.matches('.carrot')) {
