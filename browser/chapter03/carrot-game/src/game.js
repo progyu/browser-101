@@ -44,7 +44,7 @@ class Game {
     this.gameScore = document.querySelector('.game__score')
     this.gameBtn.addEventListener('click', () => {
       if (this.started) {
-        this.stop()
+        this.stop(Reason.cancel)
       } else {
         this.start()
       }
@@ -68,26 +68,12 @@ class Game {
     sound.playBackground()
   }
 
-  stop() {
+  stop(reason) {
     this.started = false
     this.stopGameTimer()
     this.hideGameButton()
-    sound.playAlert()
     sound.stopBackground()
-    this.onGameStop && this.onGameStop(Reason.cancel)
-  }
-
-  finish(win) {
-    this.started = false
-    this.hideGameButton()
-    if (win) {
-      sound.playWin()
-    } else {
-      sound.playBug()
-    }
-    this.stopGameTimer()
-    sound.stopBackground()
-    this.onGameStop && this.onGameStop(win ? Reason.win : Reason.lose)
+    this.onGameStop && this.onGameStop(reason)
   }
 
   initGame() {
@@ -118,7 +104,7 @@ class Game {
     this.timer = setInterval(() => {
       if (remainingTimeSec <= 0) {
         clearInterval(this.timer)
-        this.finish(this.carrotCount === this.score)
+        this.stop(this.carrotCount === this.score ? Reason.win : Reason.lose)
         return
       }
       this.updateTimerText(--remainingTimeSec)
@@ -146,10 +132,10 @@ class Game {
       this.score++
       this.updateScoreBoard()
       if (this.score === this.carrotCount) {
-        this.finish(true)
+        this.stop(Reason.win)
       }
     } else if (item === 'bug') {
-      this.finish(false)
+      this.stop(Reason.lose)
     }
   }
 }
