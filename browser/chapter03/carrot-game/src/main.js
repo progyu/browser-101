@@ -1,8 +1,13 @@
 'use strict'
-import Popup from './popup.js'
-import Game from './game.js'
 
-const game = new Game(3, 2, 2)
+import Popup from './popup.js'
+import { GameBuilder } from './game.js'
+
+const game = new GameBuilder()
+  .withGameDuration(3)
+  .withCarrotCount(2)
+  .withBugCount(2)
+  .build()
 const gameFinishBanner = new Popup()
 
 game.setGameStopListner(reason => {
