@@ -3,6 +3,12 @@
 import Field from './field.js'
 import * as sound from './sound.js'
 
+export const Reason = Object.freeze({
+  cancel: 'cancel',
+  win: 'win',
+  lose: 'lose'
+})
+
 export class GameBuilder {
   withGameDuration(duration) {
     this.gameDuration = duration
@@ -54,7 +60,6 @@ class Game {
   }
 
   start() {
-    console.log('start')
     this.started = true
     this.initGame()
     this.showStopButton()
@@ -64,13 +69,12 @@ class Game {
   }
 
   stop() {
-    console.log('stop')
     this.started = false
     this.stopGameTimer()
     this.hideGameButton()
     sound.playAlert()
     sound.stopBackground()
-    this.onGameStop && this.onGameStop('cancel')
+    this.onGameStop && this.onGameStop(Reason.cancel)
   }
 
   finish(win) {
@@ -83,7 +87,7 @@ class Game {
     }
     this.stopGameTimer()
     sound.stopBackground()
-    this.onGameStop && this.onGameStop(win ? 'win' : 'lose')
+    this.onGameStop && this.onGameStop(win ? Reason.win : Reason.lose)
   }
 
   initGame() {
